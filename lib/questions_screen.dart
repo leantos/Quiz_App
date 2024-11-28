@@ -43,6 +43,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               currentQuestion.text,
               style: const TextStyle(
                 color: Colors.white,
+                fontSize: 25,
               ),
             ),
             const SizedBox(
