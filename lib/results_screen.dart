@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_app/data/questions.dart';
-import 'package:quiz_app/questions_summary.dart';
+import 'package:quiz_app/questions_summary/questions_summary.dart';
 
 class ResultsScreen extends StatelessWidget {
   const ResultsScreen({
     super.key,
     required this.chosenAnswers,
+    required this.onRestart,
   });
 
   final List<String> chosenAnswers;
+  final void Function() onRestart;
 
   List<Map<String, Object>> getSummaryData() {
     final List<Map<String, Object>> summary = [];
@@ -45,32 +47,27 @@ class ResultsScreen extends StatelessWidget {
             Text(
               'You answer $numCorrectQuestions out of $numTotalQuestions questions correctly',
               style: const TextStyle(
-                color: Colors.white,
+                color: Color.fromARGB(208, 255, 255, 255),
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
+              textAlign: TextAlign.center,
             ),
             const SizedBox(
               height: 30,
             ),
-            QuestionsSummary(summaryData),
+            QuestionsSummary(summaryData: summaryData),
             const SizedBox(
               height: 30,
             ),
-            const Text(
-              'List of answers and questions',
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-            const SizedBox(
-              height: 30,
-            ),
-            TextButton(
+            TextButton.icon(
               style: TextButton.styleFrom(
-                backgroundColor: Colors.white,
+                backgroundColor: const Color.fromARGB(178, 255, 255, 255),
                 foregroundColor: Colors.black,
               ),
-              onPressed: () {},
-              child: const Text(
+              onPressed: onRestart,
+              icon: const Icon(Icons.refresh),
+              label: const Text(
                 'Restart Quiz',
               ),
             )
